@@ -10,23 +10,19 @@
     <link href="https://googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            /* Sets your logo image as the permanent, full-screen background wallpaper */
-            background-image: url('logo.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-color: #050505; /* Deep fallback dark tone while loading */
+            /* Sets a solid dark tone matching the exact deep edge shadows of your logo art */
+            background-color: #050505; 
             color: #ffffff;
             font-family: 'Syne', -apple-system, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; /* Pushes content below the centered logo glow */
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
             margin: 0;
-            padding-bottom: 8vh; /* Keeps interface beautifully balanced at the bottom */
+            padding: 20px;
             box-sizing: border-box;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         
         /* Absolute insurance to completely kill all link, form, or hover underlines */
@@ -35,16 +31,35 @@
             box-shadow: none !important;
         }
 
+        /* Container that handles positioning the logo higher on the page */
+        .logo-wrapper {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -5vh; /* Pushes the logo upward on the screen */
+            margin-bottom: 2rem; /* Clean breathing room below the logo */
+        }
+
+        /* Custom constraints for the N² logo image element */
+        .logo-graphic {
+            width: 80%; /* Shrinks the logo down so it isn't overwhelming on phones */
+            max-width: 320px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 127, 0.2)); /* Soft subtle expansion of the pink glow */
+        }
+
         .tagline {
             font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 5px;
             color: #ffffff; /* High contrast crisp white statement */
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             line-height: 1.4;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Ensures readability over texture */
         }
 
         #countdown {
@@ -52,8 +67,7 @@
             font-size: 1.5rem;
             letter-spacing: 3px;
             margin-bottom: 3rem;
-            color: #a0a0a0; /* Clean digital clock layout */
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            color: #888888; /* Clean digital clock layout */
         }
 
         .email-form {
@@ -65,7 +79,7 @@
         }
 
         .email-input {
-            background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay for typing clarity */
+            background: transparent;
             border: none;
             border-bottom: 2px solid #222222;
             color: #ffffff;
@@ -77,13 +91,12 @@
             text-align: center;
             outline: none;
             letter-spacing: 1px;
-            transition: all 0.3s;
+            transition: border-color 0.3s;
             border-radius: 0;
         }
 
         .email-input:focus {
             border-bottom-color: #ff007f; /* Electric pink line on click */
-            background: rgba(0, 0, 0, 0.6);
         }
 
         .submit-btn {
@@ -110,6 +123,11 @@
     </style>
 </head>
 <body>
+    
+    <!-- Logo Wrapper: Controls the standalone image sizing and upward lift -->
+    <div class="logo-wrapper">
+        <img src="logo.png" alt="N²" class="logo-graphic">
+    </div>
     
     <!-- Clean, Unified Statement Line -->
     <div class="tagline">Niagara, Squared.<br>The Midnight Drop.</div>
