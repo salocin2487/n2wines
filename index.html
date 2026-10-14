@@ -10,48 +10,52 @@
     <link href="https://googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #000000;
+            /* Sets your logo image as the permanent, full-screen background wallpaper */
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: #050505; /* Deep fallback dark tone while loading */
             color: #ffffff;
             font-family: 'Syne', -apple-system, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end; /* Pushes content below the centered logo glow */
             height: 100vh;
             margin: 0;
+            padding-bottom: 8vh; /* Keeps interface beautifully balanced at the bottom */
+            box-sizing: border-box;
             overflow: hidden;
         }
-        .logo {
-            font-size: 6rem;
-            font-weight: 800;
-            color: #ff007f; /* Electric Neon Pink */
-            text-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
-            margin-bottom: 0.5rem;
-            letter-spacing: -3px;
-            text-transform: uppercase;
+        
+        /* Absolute insurance to completely kill all link, form, or hover underlines */
+        form, a, input, button, div, span {
+            text-decoration: none !important;
+            box-shadow: none !important;
         }
-        .logo sup {
-            font-size: 2.8rem;
-            top: -0.4em;
-            font-weight: 700;
-        }
+
         .tagline {
             font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 5px;
-            color: #ffffff; /* Bright white high contrast statement */
-            margin-bottom: 2.5rem;
+            color: #ffffff; /* High contrast crisp white statement */
+            margin-bottom: 2rem;
             text-align: center;
             line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Ensures readability over texture */
         }
+
         #countdown {
             font-family: monospace;
             font-size: 1.5rem;
             letter-spacing: 3px;
-            margin-bottom: 3.5rem;
-            color: #888888; /* Muted digital clock layout */
+            margin-bottom: 3rem;
+            color: #a0a0a0; /* Clean digital clock layout */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
+
         .email-form {
             display: flex;
             flex-direction: column;
@@ -59,8 +63,9 @@
             width: 100%;
             max-width: 320px;
         }
+
         .email-input {
-            background: transparent;
+            background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay for typing clarity */
             border: none;
             border-bottom: 2px solid #222222;
             color: #ffffff;
@@ -72,11 +77,15 @@
             text-align: center;
             outline: none;
             letter-spacing: 1px;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            border-radius: 0;
         }
+
         .email-input:focus {
-            border-bottom-color: #ff007f;
+            border-bottom-color: #ff007f; /* Electric pink line on click */
+            background: rgba(0, 0, 0, 0.6);
         }
+
         .submit-btn {
             background-color: transparent;
             color: #ff007f;
@@ -90,18 +99,17 @@
             letter-spacing: 3px;
             cursor: pointer;
             transition: all 0.3s;
+            border-radius: 0;
         }
+
         .submit-btn:hover {
             background-color: #ff007f;
             color: #000000;
-            box-shadow: 0 0 20px #ff007f;
+            box-shadow: 0 0 20px #ff007f !important;
         }
     </style>
 </head>
 <body>
-
-    <!-- Bold Alphanumeric Streetwear Logo -->
-    <div class="logo">N<sup>2</sup></div>
     
     <!-- Clean, Unified Statement Line -->
     <div class="tagline">Niagara, Squared.<br>The Midnight Drop.</div>
@@ -109,12 +117,14 @@
     <!-- Cryptic Ticking Clock -->
     <div id="countdown">000D : 00H : 00M : 00S</div>
 
+    <!-- Email Collection Input -->
     <form class="email-form" action="#" method="POST">
         <input type="email" class="email-input" placeholder="ENTER EMAIL FOR PRIORITY ACCESS" required>
         <button type="submit" class="submit-btn">JOIN SYSTEM</button>
     </form>
 
     <script>
+        // Target countdown date: Third Thursday of Nov 2027 (Nov 18, 2027 at 00:01:00)
         const targetDate = new Date("November 18, 2027 00:01:00").getTime();
 
         const timer = setInterval(function() {
