@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N²</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .logo {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #ff007f; /* Electric Neon Pink */
+            text-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+        .logo sup {
+            font-size: 2.5rem;
+            top: -0.5em;
+        }
+        .tagline {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888888;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+        #countdown {
+            font-family: monospace;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+        /* Style for email collection box */
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 320px;
+        }
+        .email-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #333333;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .email-input:focus {
+            border-bottom-color: #ff007f;
+        }
+        .submit-btn {
+            background-color: transparent;
+            color: #ff007f;
+            border: 1px solid #ff007f;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #ff007f;
+            color: #000000;
+            box-shadow: 0 0 15px #ff007f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Concept 1 Neon Logo -->
+    <div class="logo">N<sup>2</sup></div>
+    
+    <!-- Cryptic Vibe Text -->
+    <div class="tagline">Carbonic. Chilled. Unfiltered.<br>The Midnight Drop.</div>
+    
+    <!-- Ticking Countdown Clock -->
+    <div id="countdown">LOADING VINTAGE...</div>
+
+    <!-- Simple Input Framework (Will connect to Mailchimp/Brevo later) -->
+    <form class="email-form" action="#" method="POST">
+        <input type="email" class="email-input" placeholder="ENTER EMAIL FOR PRIORITY ACCESS" required>
+        <button type="submit" class="submit-btn">JOIN SYSTEM</button>
+    </form>
+
+    <script>
+        // Set target countdown date: Third Thursday of Nov 2027 (Nov 18, 2027 at 00:01:00)
+        const targetDate = new Date("November 18, 2027 00:01:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            // Time math calculations
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Add leading zeros for sleek digital display look
+            const d = days.toString().padStart(3, '0');
+            const h = hours.toString().padStart(2, '0');
+            const m = minutes.toString().padStart(2, '0');
+            const s = seconds.toString().padStart(2, '0');
+
+            document.getElementById("countdown").innerHTML = `${d}D : ${h}H : ${m}M : ${s}S`;
+
+            if (difference < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "THE JUICE IS LOOSE";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
